@@ -30,10 +30,9 @@ backgroundImage.onload = function() {
 };
 
 function drawNeon() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
-    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // Draw background image
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
     
-    // Neon text settings
     ctx.fillStyle = color;
     ctx.font = `${size}px "${font}"`;
     ctx.textAlign = 'center';
@@ -41,9 +40,9 @@ function drawNeon() {
     ctx.shadowBlur = 20;
     ctx.shadowColor = color;
     ctx.fillText(text, canvas.width / 2, canvas.height / 2);
-    ctx.shadowBlur = 0; // Reset shadowBlur for next draw
+    ctx.shadowBlur = 0;
     
-    updateOrderSummary(); // Update the order summary with the current customization
+    updateOrderSummary();
 }
 
 function updateNeon() {
@@ -54,42 +53,47 @@ function updateNeon() {
     drawNeon();
 }
 
-// Attach event listeners for real-time updates
 neonColorPicker.addEventListener('change', updateNeon);
 fontPicker.addEventListener('change', updateNeon);
 sizePicker.addEventListener('input', updateNeon);
 textInput.addEventListener('input', updateNeon);
 
 document.getElementById('orderForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault();
 
-    const orderData = {
-        customerName: document.querySelector('[name="customerName"]').value,
-        customerEmail: document.querySelector('[name="customerEmail"]').value,
-        customerAddress: document.querySelector('[name="customerAddress"]').value,
-        neonText: text,
-        neonColor: color,
-        neonSize: size,
-        neonFont: font,
-    };
+    // Dynamically add the form-name input to ensure Netlify recognizes the form
+    const formNameInput = document.createElement('input');
+    formNameInput.type = 'hidden';
+    formNameInput.name = 'form-name';
+    formNameInput.value = 'orderForm';
+    this.appendChild(formNameInput);
 
-    fetch('submitOrder.php', {
+    const formData = new FormData(this);
+    const orderData = {};
+    formData.forEach((value, key) => { orderData[key] = value; });
+
+    // Submit to the Netlify endpoint
+    fetch('/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify(orderData),
+        body: new URLSearchParams(formData).toString(),
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        // Redirect or display a success message
         alert('Thank you for your order!');
-        // Here you can redirect the user or clear the form
+        // Optionally, redirect to a thank-you page
+        // window.location.href = '/thank-you.html';
     })
     .catch((error) => {
         console.error('Error:', error);
+        alert('There was a problem with your order. Please try again.');
     });
 });
 
-// Initial setup
-updateNeon(); // To ensure everything is set up correctly on page load
+updateNeon(); // Initial setup

@@ -56,12 +56,14 @@
                 Font: <span id="fontName">Arial</span>
             </p>
         </section>
-        <form id="orderForm" action="submitOrder.php" method="POST">
+        <form id="orderForm" name="orderForm" method="POST" netlify>
+            <input type="hidden" name="form-name" value="orderForm" />
             <input type="text" name="customerName" placeholder="Your Name" required>
             <input type="email" name="customerEmail" placeholder="Your Email" required>
             <input type="text" name="customerAddress" placeholder="Shipping Address" required>
             <button type="submit" class="checkout-btn">Submit Order</button>
         </form>
+        
     </main>
     <script src="script.js"></script>
 </body>
