@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Neon Light Checkout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Neon Customizer</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <section class="canvas-container">
+            <canvas id="neonCanvas" width="400" height="300"></canvas>
+        </section>
+        <section class="controls">
+            <label for="textInput">Your Text:</label>
+            <input type="text" id="textInput" value="Neon Light">
+            
+            <label for="neonColorPicker">Color:</label>
+            <select id="neonColorPicker">
+                <option value="#ff0000">Neon Red</option>
+                <option value="#fffa00">Neon Yellow</option>
+                <option value="#00ff00">Neon Green</option>
+                <option value="#00ffff">Neon Cyan</option>
+                <option value="#0000ff">Neon Blue</option>
+                <option value="#ff00ff">Neon Magenta</option>
+                <option value="#ff4500">Neon Orange</option>
+            </select>
+            
+            <label for="fontPicker">Font:</label>
+            <select id="fontPicker">
+                <option value="Arial">Arial</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Courier New">Courier New</option>
+            </select>
+            
+            <label for="sizePicker">Size:</label>
+            <input type="range" id="sizePicker" min="20" max="120" value="60">
+        </section>
+        <section class="order-summary">
+            <div class="summary-title">Order Summary</div>
+            <p id="summaryText">Custom Neon Light: <span id="customText">Neon Light</span><br>
+                Color: <span id="colorName">Neon Red</span><br>
+                Size: <span id="sizeValue">Medium</span><br>
+                Font: <span id="fontName">Arial</span>
+            </p>
+        </section>
+        <form id="orderForm" action="submitOrder.php" method="POST">
+            <input type="text" name="customerName" placeholder="Your Name" required>
+            <input type="email" name="customerEmail" placeholder="Your Email" required>
+            <input type="text" name="customerAddress" placeholder="Shipping Address" required>
+            <button type="submit" class="checkout-btn">Submit Order</button>
+        </form>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+/* Base Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif; /* Sophisticated and modern font */
+    background-color: #0A0A0A; /* Dark theme for exclusivity */
+    color: #FFFFFF; /* High contrast text for readability */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Header Styles */
+header {
+    width: 100%;
+    padding: 20px 0;
+    background-color: #1A1A1A; /* Slightly lighter dark shade for depth */
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700; /* Bold for impact */
+    letter-spacing: 2px; /* Added spacing for a premium feel */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #FFFFFF;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #4CAF50; /* Bright accent color for interactive elements */
+}
+
+/* Main Container Styles */
+.container {
+    padding: 60px 20px 20px; /* Increased top padding to account for fixed header */
+    margin-top: 60px; /* Ensure container doesn't hide under the header */
+    border-radius: 10px;
+    background-color: #121212; /* Deep background for sections */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); /* Soft glow effect */
+    max-width: 800px;
+    width: 100%;
+}
+
+/* Canvas Container for a sleek look */
+.canvas-container {
+    margin: 30px auto;
+    padding: 10px;
+    border: 1px solid #4CAF50; /* Accent color */
+    background: #0A0A0A;
+    border-radius: 8px;
+}
+
+/* Form and Control Styling */
+input, select, button, .controls label {
+    font-family: 'Montserrat', sans-serif;
+    color: #FFFFFF;
+}
+
+.controls label {
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+    background-color: #1A1A1A;
+    border: 1px solid #4CAF50; /* Accent color for inputs */
+    border-radius: 5px;
+    padding: 12px;
+    margin-top: 5px;
+    width: calc(100% - 24px); /* Adjust width for padding */
+}
+
+input[type="range"] {
+    -webkit-appearance: none; /* Override default appearance */
+    margin: 10px 0;
+    width: 100%;
+    background-color: #333; /* Slider background */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50; /* Accent color */
+    cursor: pointer;
+}
+
+/* Submit Button Styling */
+button {
+    background-color: #4CAF50; /* Bright accent color */
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #369b47; /* Darker shade on hover */
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Simplify navigation on smaller screens */
+    }
+    
+    .container {
+        padding: 60px 10px; /* Adjust padding for smaller screens */
+    }
+}
